@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://kit.fontawesome.com/c3ce7156bb.js" crossorigin="anonymous"></script>
+  <style>
+    /* Main wrapper locking the Tab header and Shelf together */
+    .shop-modal-container {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 85%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 5;
+    }
+
+    /* Elegant bold Shop Header Tab component */
+    .shop-header-tab {
+      background-color: #FDFBF7;    
+      border: 3px solid #6C584C;    
+      color: #6C584C;               
+      font-family: "Fira Sans", sans-serif;
+      font-size: 36px;              
+      font-weight: 800;             
+      text-transform: uppercase;
+      letter-spacing: 4px;          
+      padding: 10px 90px;           
+      border-bottom: none;          
+      border-top-left-radius: 18px;  
+      border-top-right-radius: 18px;
+      margin-bottom: -3px;          
+      text-align: center;
+      z-index: 6;
+    }
+
+    /* Main scrollable container shelf */
+    .shop-shelf-wrapper {
+      width: 100%;
+      background-color: rgba(240, 234, 210, 0.4); 
+      border: 3px solid #6C584C;
+      border-radius: 16px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .shop-shelf {
+      display: flex; 
+      gap: 25px;
+      overflow-x: auto; 
+      padding-bottom: 15px;
+      scroll-behavior: smooth;
+    }
+
+    /* Customizing the scrollbar to match the color scheme */
+    .shop-shelf::-webkit-scrollbar {
+      height: 10px;
+    }
+    .shop-shelf::-webkit-scrollbar-track {
+      background: rgba(108, 88, 76, 0.1);
+      border-radius: 10px;
+    }
+    .shop-shelf::-webkit-scrollbar-thumb {
+      background: #6C584C;
+      border-radius: 10px;
+    }
+    .shop-shelf::-webkit-scrollbar-thumb:hover {
+      background: #A98467;
+    }
+
+    /* Card framework dimensions */
+    .item-card {
+      background-color: #FFFFFF;
+      border: 3px solid #6C584C;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 210px;        
+      min-width: 210px;    
+      height: 290px; 
+      box-sizing: border-box;
+    }
+
+    .item-card img {
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .item-card h2 {
+      margin: 5px 0;
+      font-family: "Fira Sans", sans-serif;
+      color: #6C584C;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .shop-buy-btn {
+      font-family: "Fira Sans", sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      color: #F0EAD2;
+      background-color: #6C584C;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .shop-buy-btn:hover {
+      background-color: #A98467;
+    }
+
+    /* Owned State styling modifications */
+    .item-card.owned {
+      opacity: 0.75;
+      background-color: #FDFBF7;
+    }
+
+    .item-card.owned .shop-buy-btn {
+      background-color: #ABA370;
+      cursor: not-allowed;
+    }
+
+    /* COIN HUD ALIGNMENT: Ensures elements align cleanly horizontally */
+    .right-coin {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+    }
+
+    #shop-coin-count {
+      font-size: 32px !important; 
+      font-weight: bold !important;
+      font-family: "Fira Sans", sans-serif !important;
+      color: #6C584C !important;
+      line-height: 1 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <img class="bkg" src="bkg3.png" alt="Background">
+
+  <nav class="navigation-bar">
+    <a class="gobackhome" href="main.html">Foxcus</a>
+    <a class="signup" href="signup.html">Sign Up</a>
+  </nav>
+  
+  <div class="shop-modal-container">
+    
+    <div class="shop-header-tab">Shop</div>
+
+    <div class="shop-shelf-wrapper">
+      <div class="shop-shelf">
+        
+        <div class="item-card" id="card-lampplant">
+          <img src="lampandplant.png" alt="Lamp and Plant">
+          <h2>Cozy Study Lamp</h2>
+          <button class="shop-buy-btn" onclick="buyItem('lampplant', 1)">Buy (1) <i class="fa-solid fa-coins"></i></button>
+        </div>
+
+        <div class="item-card" id="card-plantcup">
+          <img src="plantandcup.png" alt="Plant and Cup">
+          <h2>Desk Succulent</h2>
+          <button class="shop-buy-btn" onclick="buyItem('plantcup', 30)">Buy (30) <i class="fa-solid fa-coins"></i></button>
+        </div>
+
+        <div class="item-card" id="card-volleyballbook">
+          <img src="volleyballandbook.png" alt="Volleyball and Book">
+          <h2>Volleyball & Novel</h2>
+          <button class="shop-buy-btn" onclick="buyItem('volleyballbook', 60)">Buy (60) <i class="fa-solid fa-coins"></i></button>
+        </div>
+
+        <div class="item-card" id="card-computer">
+          <img src="computer.png" alt="Computer">
+          <h2>Desktop PC</h2>
+          <button class="shop-buy-btn" onclick="buyItem('computer', 100)">Buy (100) <i class="fa-solid fa-coins"></i></button>
+        </div>
+
+        <div class="item-card" id="card-statute">
+          <img src="statute.png" alt="Statute Decor">
+          <h2>Statute Decor</h2>
+          <button class="shop-buy-btn" onclick="buyItem('statute', 3)">Buy (125) <i class="fa-solid fa-coins"></i></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <nav class="menu">
+    <div class="left-icons">
+      <a href="main.html" style="font-family: 'Fira Sans', sans-serif; font-size: 24px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #6C584C;">
+        <i class="fa-solid fa-house" style="font-size: 60px; color: #ABA370;"></i> Return Home
+      </a>
+    </div>
+
+    <div class="right-coin">
+      <i class="fa-solid fa-coins" style="font-size: 60px; color: #ABA370;"></i>
+      <span id="shop-coin-count">0</span>
+    </div>
+  </nav>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("userCoins") === null) {
+        localStorage.setItem("userCoins", "30"); 
+      }
+      refreshShopCounters();
+    });
+
+    function buyItem(itemName, cost) {
+      let coins = parseInt(localStorage.getItem("userCoins")) || 0;
+
+      if (localStorage.getItem(`owned_${itemName}`) === "true") return;
+
+      if (coins >= cost) {
+        coins -= cost;
+        localStorage.setItem("userCoins", coins.toString());
+        localStorage.setItem(`owned_${itemName}`, "true");
+        
+        alert("Purchased! The item has been unlocked.");
+        window.location.reload();
+      } else {
+        alert("Not enough focus minutes yet! Keep studying.");
+      }
+    }
+
+    function refreshShopCounters() {
+      const activeBalance = localStorage.getItem("userCoins") || "0";
+      document.getElementById("shop-coin-count").innerText = activeBalance;
+
+      const products = ["lampplant", "plantcup", "volleyballbook", "computer", "statute"];
+      products.forEach(key => {
+        if (localStorage.getItem(`owned_${key}`) === "true") {
+          const cardElement = document.getElementById(`card-${key}`);
+          if (cardElement) {
+            cardElement.classList.add("owned");
+            const targetBtn = cardElement.querySelector(".shop-buy-btn");
+            if (targetBtn) {
+              targetBtn.innerText = "Owned";
+              targetBtn.disabled = true;
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

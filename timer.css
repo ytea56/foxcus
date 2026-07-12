@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #F0EAD2; /* Matches your main dashboard color theme */
+	font-family: "Fira Sans", sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer-container {
+	text-align: center;
+}
+
+/* Big, bold digital clock display */
+.timer-display {
+	font-size: 120px;
+	font-weight: 700;
+	color: #6C584C; /* Dark accent brown matching your home design */
+	margin: 0 0 40px 0;
+	letter-spacing: 2px;
+}
+
+/* Elegant, interactive layout button */
+#stop-focusing-btn {
+	font-family: "Fira Sans", sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	
+	color: #F0EAD2;            /* Cream text */
+	background-color: #6C584C; /* Dark accent brown */
+	
+	padding: 15px 45px;
+	border: none;
+	border-radius: 30px;       /* Smooth pill shape matching main screen style */
+	cursor: pointer;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease-in-out;
+}
+
+#stop-focusing-btn:hover {
+	background-color: #A98467; /* Light brown shift */
+	transform: translateY(-2px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}

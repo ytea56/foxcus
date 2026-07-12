@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Visualizations & Stats</title>
+	<link rel="stylesheet" href="stat.css">
+	<script src="https://kit.fontawesome.com/c3ce7156bb.js" crossorigin="anonymous"></script>
+	<style>
+		/* --- PANORAMIC MODAL WIDENING --- */
+		.stats-window {
+			width: 95vw !important;       
+			max-width: 1500px !important;  
+			min-height: 85vh;             
+			padding: 30px 40px !important;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+		}
+
+		/* --- Master Layout Grid Splits --- */
+		.dashboard-container {
+			display: flex;
+			gap: 40px;                     
+			margin-top: 20px;
+			width: 100%;
+			flex: 1;
+		}
+
+		/* Left Content Block holding the two visualization columns */
+		.visualizations-section {
+			flex: 2.7;
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		/* Right Content Block for Metrics Sidebar */
+		.sidebar-metrics-section {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		/* --- DUAL COLUMN LAYOUT ENGINE --- */
+		.charts-columns-wrapper {
+			display: flex;
+			gap: 24px;
+			width: 100%;
+		}
+
+		/* Individual column structure grouping a chart + its text card */
+		.analysis-column {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 20px; 
+		}
+
+		/* Chart Container Card */
+		.insight-chart-holder {
+			width: 100%;
+			background-color: #FFFFFF;
+			border: 2px solid #6C584C;
+			border-radius: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 15px !important;
+			min-height: 280px;
+			box-sizing: border-box;
+		}
+
+		/* Ensuring chart graphics utilize the column workspace cleanly */
+		.insight-chart-holder img {
+			width: 100% !important;
+			height: 100% !important;
+			max-height: 260px !important; 
+			object-fit: contain;
+		}
+
+		/* --- SEPARATE ANALYSIS TEXT BOX CARDS --- */
+		.analysis-text-box {
+			background-color: #FAFAFA;
+			border: 2px solid #6C584C;
+			border-radius: 12px;
+			padding: 20px 22px;
+			font-family: "Fira Sans", sans-serif;
+			font-size: 17px;
+			color: #6C584C;
+			line-height: 1.6;
+			box-sizing: border-box;
+			text-align: left;
+			min-height: 160px; 
+		}
+
+		.analysis-text-box p {
+			margin: 0;
+		}
+
+		/* Highlight style for key motivational callouts */
+		.highlight-text {
+			font-weight: bold;
+			color: #A98467;
+		}
+
+		/* --- Sidebar Metrics Layout Alignment --- */
+		.sidebar-metrics-section .metric-box {
+			margin-bottom: 0;
+			height: 220px;                
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="stats-window">
+		<a href="main.html" class="close-btn"><i class="fa-solid fa-xmark"></i></a>
+
+		<div class="dashboard-container">
+			
+			<div class="visualizations-section">
+				<h1 class="stats-title" style="margin-bottom: 10px;">Some Visualisations About Studies...</h1>
+				
+				<div class="charts-columns-wrapper">
+					
+					<div class="analysis-column">
+						<div class="insight-chart-holder">
+							<img src="studyhourchart.png" alt="Study Hour Chart">
+						</div>
+						<div class="analysis-text-box">
+							<p>
+								As seen from the line chart, study hours have a significant impact on students’ academic performance. 
+								Usually, the more hours a student study, the higher their exam scores will be. If you have a goal, 
+								work hard towards it, and you will surely be achieving it!!!
+							</p>
+						</div>
+					</div>
+
+					<div class="analysis-column">
+						<div class="insight-chart-holder">
+							<img src="motivationlevelchart.png" alt="Motivation Level Chart">
+						</div>
+						<div class="analysis-text-box">
+							<p>
+								From this bar chart, we can also see how important it is to stay motivated to study because clearly 
+								we can see how dragging ourselves to study don’t help to achieve a higher score. This is more a 
+								reason to use <span class="highlight-text">Foxcus</span>, since <span class="highlight-text">Foxcus</span> enables you to stay motivated 
+								with our coin system, allowing you to purchase cute decorations on your desk as you study more and more.
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="sidebar-metrics-section">
+				<h2 class="sub-title" style="margin-top: 15px; margin-bottom: 5px;">And Yours !!!</h2>
+				
+				<div class="metric-box">
+					<p class="metric-label">Today you studied...</p>
+					<p class="metric-value"><span id="today-mins">0</span> mins</p>
+				</div>
+				
+				<div class="metric-box">
+					<p class="metric-label">You have studied in total...</p>
+					<p class="metric-value"><span id="total-mins">0</span> mins</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+				// 1. Unified Universal Date Engine 
+				const todayDateString = new Date().toISOString().split('T')[0];
+
+				// 2. Fetch Core Tracking Parameters
+				const lastSavedDate = localStorage.getItem("lastStudyDate");
+				const totalMins = localStorage.getItem("totalStudyMinutes") || 0;
+				let todayMins = localStorage.getItem("todayStudyMinutes") || 0;
+
+				// 3. New Day Transition Handshake
+				if (lastSavedDate !== todayDateString) {
+					todayMins = 0;
+					localStorage.setItem("todayStudyMinutes", "0");
+					localStorage.setItem("lastStudyDate", todayDateString);
+				}
+
+				// 4. Paint Values onto DOM Hooks
+				document.getElementById("today-mins").innerText = todayMins;
+				document.getElementById("total-mins").innerText = totalMins;
+				function displayAuditTrail() {
+		    const logContainer = document.getElementById('audit-log-list'); // Create a <div> or <ul> with this ID in your HTML
+		    const sessionLog = JSON.parse(localStorage.getItem("foxcus_session_log")) || [];
+
+		    if (sessionLog.length === 0) {
+		        logContainer.innerHTML = "<p>No focus sessions recorded yet.</p>";
+		        return;
+		    }
+
+		    // Build list items showing enterprise tracking data
+		    logContainer.innerHTML = sessionLog.map(session => `
+		        <div class="log-item" style="border-bottom: 1px solid #ccc; padding: 5px 0;">
+		            <strong>${session.sessionID}</strong> | 
+		            <span>${session.timestamp}</span> | 
+		            <span style="color: #6b8e23;">+${session.durationMins} mins</span>
+		        </div>
+		    `).join('');
+		}
+	</script>
+</body>
+</html>

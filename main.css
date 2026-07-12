@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
+/* --- 1. Global Viewport Constraints --- */
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.bkg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	z-index: -1; 
+}
+
+/* --- 2. Top Banner Header Panels --- */
+.navigation-bar {
+	background-color: #F0EAD2;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 40px;
+}
+
+.gobackhome {
+	font-size: 42px;
+	text-decoration: none;
+	font-family: "Playwrite GB S";
+	color: #ABA370;
+}
+
+.signup {
+	font-size: 28px;
+	text-decoration: none;
+	color: #6C584C;
+	font-family: "Fira Sans";
+}
+
+.signup:hover {
+	color: #A98467;
+}
+
+/* --- 3. Restored Original Focus Capsule Button --- */
+.focus-box {
+	position: absolute;
+	/* Remove top: 80%; entirely so it stops overriding your HTML rules */
+	left: 50%;
+	transform: translateX(-50%); /* Use translateX instead of translate(-50%, -50%) */
+	z-index: 10;
+	margin-bottom: 15px;
+}
+
+/* Your exact original design: Cozy dark brown capsule with bold white text */
+/* Your Original Large Focus Capsule Button */
+.start {
+	display: inline-block;
+	font-family: "Fira Sans";
+	font-size: 40px;           /* Slightly larger text footprint */
+	font-weight: 700;          /* Bold weight matching the original image */
+	letter-spacing: 3px;     /* Normal letter spacing */
+	text-decoration: none;
+	color: #FFFFFF;            /* Sharp white color text */
+	background-color: #6A584E; /* Accurate original brown tone background */
+	padding: 20px 50px;        /* Expanded padding to make the button bigger */
+	border-radius: 28px;       /* Smooth rounded pill corners */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease-in-out;
+}
+
+.start:hover {
+	background-color: #55463E; 
+	transform: scale(1.02); 
+}
+
+/* --- 4. Dashboard Menu Footers --- */
+/* --- 4. Dashboard Menu Footers --- */
+.menu {
+	background-color: #F0EAD2;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 20px 40px;
+	display: flex;
+	justify-content: space-between; 
+	align-items: center;
+	z-index: 10;
+}
+
+.left-icons {
+	display: flex;
+	gap: 40px; 
+}
+
+/* Base state for the link wraps */
+.left-icons a {
+	color: #ABA370;
+	text-decoration: none;
+	display: inline-block; /* Crucial for transform scaling movements to render properly */
+	transition: transform 0.2s ease, color 0.2s ease; /* Smooth animation timing */
+}
+
+/* Interactive Hover State */
+.left-icons a:hover {
+	color: #6C584C;        /* Darker brown to match the theme color style of your text */
+	transform: scale(1.15) translateY(-3px); /* Slightly lifts the icon up and makes it larger */
+}
+
+.right-coin {
+	color: #ABA370;
+	display: flex;
+	align-items: center;
+}
+
+#home-coin-count {
+	font-size: 32px;
+	font-weight: bold;
+	font-family: "Fira Sans", sans-serif;
+	color: #6C584C;
+	margin-left: 15px;
+}
+
+/* --- 5. Floating Item Layers Positioned Precisely on the Desk --- */
+.hidden-decor {
+	display: none;
+	position: absolute;
+	z-index: 2; 
+	pointer-events: none;
+}
+
+.visible-decor {
+	display: block !important;
+}
+
+#decor-plantcup {
+	width: 12.8vw;
+	bottom: 34.6vh;
+	left: 61vw;
+}
+
+/* Center-Right Desk Surface: Volleyball & Book 
+   (Enlarged to match your ideal mockup layout dimensions perfectly!) */
+#decor-volleyballbook {
+	width: 16.5vw;        /* Enlarged from 12.2vw for maximum crispness and presence */
+	bottom: 15.5vh;       /* Weighted lower to rest naturally on the tabletop texture */
+	left: 74vw; 
+}
+
+/* Far Right Desk Surface Edge: Desktop Computer Monitor */
+#decor-computer {
+	width: 32vw;
+	bottom: 45vh;
+	left: 2.2vw;
+}
+
+/* Far Left Table Stand Area: Plant Statue Stand */
+#decor-statute {
+	width: 22.8vw;
+	bottom: 30.5vh;
+	left: 76.2vw;
+}
+
+/* Far Left Surface Corner: Cozy Study Lamp & Cactus */
+#decor-lampplant {
+	width: 13vw;         
+	bottom: 12.5vh;        
+	left: 2.5vw;         
+}
+
+/* --- AI Chatbot Interface --- */
+#ai-chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: sans-serif;
+}
+
+.chat-trigger {
+    background-color: #8b5a2b; /* Warm matching brown */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#chatbot-window {
+    width: 320px;
+    height: 400px;
+    background-color: #fdfbf7; /* Matching background cream */
+    border: 2px solid #8b5a2b;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.chat-window-hidden { display: none !important; }
+
+.chat-header {
+    background-color: #8b5a2b;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-header h3 { margin: 0; font-size: 0.95rem; }
+#close-chat-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+.chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-message {
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 80%;
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+.bot-msg { background-color: #e6dfd3; align-self: flex-start; color: #333; }
+.user-msg { background-color: #bc9c74; align-self: flex-end; color: white; }
+
+.chat-footer { padding: 10px; display: flex; gap: 5px; border-top: 1px solid #e6dfd3; }
+#chat-user-input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+#send-chat-btn { background-color: #8b5a2b; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }

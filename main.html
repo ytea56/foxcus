@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Main</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://kit.fontawesome.com/c3ce7156bb.js" crossorigin="anonymous"></script>
+	<style>
+		/* Core viewport bounding rules */
+		body {
+			margin: 0;
+			padding: 0;
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			background-color: #FDFBF7;
+		}
+
+		/* Top Navigation Header Panel */
+		.navigation-bar {
+			position: relative;
+			z-index: 10;
+		}
+
+		/* Main Scene Interactive Canvas Box */
+		.main-scene-container {
+			flex: 1;
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+		.bkg {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+		}
+
+		/* Asset display layer presets */
+		.hidden-decor {
+			display: none;
+			position: absolute;
+			z-index: 2;
+			object-fit: contain;
+		}
+
+		/* Active layer toggle rule */
+		.visible-decor {
+			display: block !important;
+		}
+
+		/* --- PERFECTED COORDINATE ALIGNMENTS --- */
+		
+		/* 1. Cozy Study Lamp */
+		#decor-lampplant {
+			left: 2.5%;
+			bottom: 4%;
+			height: 80%;
+			z-index: 4; 
+			width: 17%;
+		}
+
+		/* 2. Desktop PC */
+		#decor-computer {
+			left: 5%;
+			bottom: 29%;
+			height: 60%;
+			z-index: 2;
+		}
+
+		/* 3. Desk Succulent Container */
+		#decor-plantcup {
+			right: 28%;
+			bottom: 35%;
+			height: 38%;
+			z-index: 2;
+		}
+
+		/* 4. Volleyball & Novel */
+		#decor-volleyballbook {
+			right: 23%;
+			bottom: 15%;
+			height: 30%;
+			z-index: 3; 
+		}
+
+		/* 5. Statute Decor Tower */
+		#decor-statute {
+			right: 5%;
+			bottom: 30%;
+			height: 70%;
+			z-index: 2;
+		}
+
+		/* 6. FOCUS Action Button - Changing 'bottom' here will work perfectly now! */
+		.focus-box {
+			position: absolute;
+			left: 50%;
+			bottom: 13%; /* Tweak this value freely to move it up or down */
+			transform: translateX(-50%);
+			z-index: 20; /* High priority visibility over other scene items */
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="navigation-bar">
+		<a class="gobackhome" href="main.html">Foxcus</a>
+		<a class="signup" href="signup.html">Sign Up</a>
+	</nav>
+	
+	<div class="main-scene-container">
+		<img class="bkg" src="bkg3.png" alt="Background">
+
+		<img src="statute.png" id="decor-statute" class="hidden-decor" alt="Statute Decor">
+		<img src="volleyballandbook.png" id="decor-volleyballbook" class="hidden-decor" alt="Volleyball">
+		<img src="plantandcup.png" id="decor-plantcup" class="hidden-decor" alt="Desk Succulent">
+		<img src="computer.png" id="decor-computer" class="hidden-decor" alt="Computer">
+		<img src="lampandplant.png" id="decor-lampplant" class="hidden-decor" alt="Cozy Lamp">
+	</div>
+
+	<div class="focus-box">
+		<a class="start" href="timer.html">FOCUS</a>
+	</div>
+
+	<nav class="menu">
+			<div class="left-icons">
+				<a href="stat.html">
+					<i class="fa-solid fa-chart-simple" style="font-size: 60px;"></i>
+				</a>
+				<a href="shop.html">
+					<i class="fa-solid fa-cart-shopping" style="font-size: 60px;"></i>
+				</a>
+				<!-- FIXED AI ASSISTANT SHORTCUT ICON -->
+				<a href="ai.html" class="nav-item">
+					<i class="fa-solid fa-comment-dots" style="font-size: 60px;"></i>
+				</a>
+			</div>
+
+			<div class="right-coin">
+				<i class="fa-solid fa-coins" style="font-size: 60px;"></i>
+				<span id="home-coin-count">0</span>
+			</div>
+		</nav>
+	<script>
+		// Sync currency engine variables
+		const totalCoins = parseInt(localStorage.getItem("userCoins")) || 0;
+		document.getElementById("home-coin-count").innerText = totalCoins;
+
+		// Fetch state storage values matching local storage identifiers
+		const ownsPlantCup = localStorage.getItem("owned_plantcup") === "true";
+		const ownsVolleyball = localStorage.getItem("owned_volleyballbook") === "true";
+		const ownsComputer = localStorage.getItem("owned_computer") === "true";
+		const ownsStatute = localStorage.getItem("owned_statute") === "true";
+		const ownsLamp = localStorage.getItem("owned_lampplant") === "true";
+
+		// Render items dynamically if owned status is active
+		if (ownsPlantCup) document.getElementById("decor-plantcup").classList.add("visible-decor");
+		if (ownsVolleyball) document.getElementById("decor-volleyballbook").classList.add("visible-decor");
+		if (ownsComputer) document.getElementById("decor-computer").classList.add("visible-decor");
+		if (ownsStatute) document.getElementById("decor-statute").classList.add("visible-decor");
+		if (ownsLamp) document.getElementById("decor-lampplant").classList.add("visible-decor");
+	</script>
+
+</body>
+</html>
