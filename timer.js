@@ -60,7 +60,7 @@ stopBtn.addEventListener("click", () => {
 	}
 
 	// Send them right back to the dashboard matching your storyboard flow
-	window.location.href = "main.html";
+	window.location.href = "index.html";
 }); 
 
 // Kick off the timer automatically the exact millisecond the page loads!
