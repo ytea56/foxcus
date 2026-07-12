@@ -40,7 +40,7 @@ form.addEventListener('submit', (e) => {
 		}
 		
 		// Send them right along to your main application homepage!
-		window.location.href = "main.html";
+		window.location.href = "index.html";
 	}
 })
 
